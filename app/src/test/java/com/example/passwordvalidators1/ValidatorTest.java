@@ -20,7 +20,7 @@ public class ValidatorTest {
     @BeforeClass
     public static void init(){
         Validator=new PasswordValidator();
-        Validator.setInfo(lowp,secure);
+        Validator.setPass(lowp);
     }
 
 
@@ -28,12 +28,10 @@ public class ValidatorTest {
     public void passIsCorrect(){
     assertEquals(lowp, Validator.getPass());
     }
-    public void secureIsCorrect(){
-    assertEquals(secure,Validator.getSecure());
-    }
+    //public void secureIsCorrect(){assertEquals(secure,Validator.getSecure());}
 
-    @Test
-    public void checkIsCorrect(){
-        assertEquals(secure, Validator.passCheck());
-    }
+    //@Test
+    // public void checkIsCorrect(){
+     //   assertEquals(secure, Validator.passCheck());
+    //}
 }

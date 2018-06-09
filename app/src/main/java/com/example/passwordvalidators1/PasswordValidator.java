@@ -3,21 +3,21 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class PasswordValidator {
-    private String pass="ABCDEFGH";
+    public String pass="";
     private boolean secure=true;
 
 
-    private String lowp=pass.toLowerCase();
-    private String highp=pass.toUpperCase();
+    public String lowp="";
+    public String highp=pass.toUpperCase();
 
-    public void setInfo(String p,boolean s){
-        lowp=p;
-        secure=s;
+    public void setPass(String p) {
+        this.pass=p;
+        this.lowp=pass.toLowerCase();
     }
 
-
     public String getPass() {
-        return lowp;
+        return pass;
+
     }
 
     public boolean getSecure(){
@@ -25,37 +25,48 @@ public class PasswordValidator {
     }
 
     public boolean isSecure() {
-        return passCheck();
+        boolean s=passCheck(pass,lowp,secure);
+        if(secure==true){
+            return true;
+        }
+        else
+            return false;
     }
 
 
-    public boolean passCheck() {
-        if (lowp.length() < 8) {
-            secure = false;
-            return secure;
+    public boolean passCheck(String p1,String l1,boolean s) {
+        if (p1.length() < 8) {
+            this.secure = false;
+            return this.secure;
         }
-        else if (lowp.equals("password")) {
-            secure = false;
-            return secure;
+        else if (l1.equals("password")) {
+            this.secure = false;
+            return this.secure;
         }
         //15 or less
-        else if(pass.length()>15){
-            secure=false;
-            return secure;
+        else if(p1.length()>16){
+            this.secure=false;
+            return this.secure;
         }
         //contains a number
-        else if(!(Pattern.compile("[0-9]").matcher(pass).find())){
-            secure=false;
-            return secure;
+        else if(!(Pattern.compile("[0-9]").matcher(p1).find())){
+            this.secure=false;
+            return this.secure;
         }
         //capital letter check
-        else if(!(Pattern.compile("[A-Z]").matcher(pass).find())){
-            secure=false;
-            return secure;
+        else if(!(Pattern.compile("[A-Z]").matcher(p1).find())){
+            this.secure=false;
+            return this.secure;
         }
 
+        else if(!(Pattern.compile("[a-z]").matcher(p1).find())){
+            this.secure=false;
+            return this.secure;
+        }
+
+        
         else
-            return secure;
+            return this.secure;
 
     }
 
