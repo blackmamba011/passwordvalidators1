@@ -64,7 +64,7 @@ public class PasswordValidator {
             return this.secure;
         }
 
-        
+
         else
             return this.secure;
 
